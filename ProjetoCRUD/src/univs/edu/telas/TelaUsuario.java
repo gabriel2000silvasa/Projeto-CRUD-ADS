@@ -173,7 +173,7 @@ public class TelaUsuario extends javax.swing.JFrame {
         if(tfNome.getText().isEmpty() || tfUsuario.getText().isEmpty() || tfSenha.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
         }else{
-            usuario.setNomeUsuario(tfNome.getText());
+            usuario.setNome(tfNome.getText());
             usuario.setLogin(tfUsuario.getText());
             usuario.setSenha(tfSenha.getText());
             dao.salvar(usuario);
