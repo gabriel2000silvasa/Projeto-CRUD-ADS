@@ -5,6 +5,7 @@
  */
 package univs.edu.telas;
 
+import javax.swing.JOptionPane;
 import univs.edu.usuario.Usuario;
 import univs.edu.usuario.UsuarioDAO;
 import univs.edu.usuario.UsuarioTableModel;
@@ -66,6 +67,11 @@ public class PesquisaUsuario extends javax.swing.JFrame {
         });
 
         jButton2.setText("Excluir");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Editar");
 
@@ -99,11 +105,27 @@ public class PesquisaUsuario extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        TelaUsuario tela = new TelaUsuario();
+        tela.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        int linha = tabelaUsuario.getSelectedRow();
+        if(linha != -1){
+            int id = (int) tabelaUsuario.getValueAt(linha, 0);
+            usuario = dao.pesquisar(id);
+            dao.excluir(usuario);
+            JOptionPane.showMessageDialog(null, "Usuário excluído!");
+        }else{
+            JOptionPane.showMessageDialog(null, "Selecione uma linha!");
+        }
+        atualizarTabela();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
